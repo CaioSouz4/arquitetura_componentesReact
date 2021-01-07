@@ -4,15 +4,20 @@ class UserPresentationComponent extends React.Component {
     render () {
       return (
         <>
-          <p>api que carrega dados aleatórios:  https://randomuser.me/api</p>
-          <ul>
-              {this.props.users}
-              {this.props.json.map(json =><li>Nome: {json.name.first}</li>)}
-              {this.props.json.map(json =><li>Genêro: {json.gender}</li>)}
-              {this.props.json.map(json =><li>País: {json.location.country}</li>)}
-              {this.props.json.map(json =><li>Cidade: {json.location.city}</li>)}                         
-          </ul>
-          <button onClick={this.props.reloadpage} >Recarregar</button>
+          <p>https://randomuser.me/api</p>
+          <div style={{"marginLeft": "40px", "marginBottom": "15px" }}>
+              {this.props.persons.map(p => { 
+                return (
+                  <ul>
+                    <li>{p.name.first}</li>
+                    <li>{p.gender}</li>
+                    <li>{p.location.country}</li>
+                    <li>{p.location.city}</li>
+                  </ul>
+                )}
+              )}
+          </div>
+          <button onClick={this.props.newPerson} >Novo</button>
         </>  
       );
     }
