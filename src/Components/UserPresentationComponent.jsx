@@ -1,4 +1,4 @@
-import { Card, CardContent, CardMedia, makeStyles, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, CardMedia, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 
 const useStyles = makeStyles(() => ({
@@ -10,10 +10,11 @@ const useStyles = makeStyles(() => ({
     width: "20rem",
     height: "10rem"
   },
-    content: {
+  content: {
     flexWrap: 'wrap',
     flex: '1 0 auto',
-    maxWidth: '60%'
+    maxWidth: '60%',
+    color: "#dcdde1"
   },
   img: {
     width: "10rem",
@@ -21,6 +22,17 @@ const useStyles = makeStyles(() => ({
   div: {
     display: "flex",
     flexWrap:  "wrap" 
+  },
+  icon: {
+    color: "#2c3e50"
+  },
+  button: {
+    margin: "20px",
+    backgroundColor: "#bdc3c7",
+    color: "black",
+    "&:hover": {
+      backgroundColor: "#bdc3c7",
+    }
   }
 }));
 
@@ -28,18 +40,18 @@ const UserPresentationComponent = (props) => {
   const classes = useStyles();  
   return (
     <>
-      <p>https://randomuser.me/api</p>
       <div className={classes.div}>
         {props.persons.map(p => {
             return (
               <Card className={classes.root}>
                 <CardContent className={classes.content}>
                     <Typography component="h5" variant="h5">
-                        {p.name.first}
+                        {p.name.first}                        
                     </Typography>
                     <Typography variant="subtitle1">
                         {p.location.country} - {p.location.city}
                     </Typography>
+                      <img alt="flag" src={`https://www.countryflags.io/${p.alpha2Code}/flat/32.png`}/>
                     <Typography variant="subtitle1" >
                         {p.gender}
                     </Typography>
@@ -52,7 +64,9 @@ const UserPresentationComponent = (props) => {
             )}
         )}
       </div>
-      <button onClick={props.newPerson} >Novo</button>
+      <Button className={classes.button} onClick={props.newPerson}>
+            NOVO USUÁRIO
+      </Button>
     </>
   );
 }
