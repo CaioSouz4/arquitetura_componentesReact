@@ -30,11 +30,21 @@ class UserListContainer extends Component {
         })
     })
   }
-  
+
+  removePerson = (index) => { 
+    this.state.persons.splice(index, 1)
+    this.setState({persons: this.state.persons})
+  } 
+
   render () {
     return (
       <div className="container">
-          <UserPresentationComponent flag={this.state.flag} persons={this.state.persons} newPerson={() => this.newPerson()} />
+          <UserPresentationComponent 
+              flag={this.state.flag} 
+              persons={this.state.persons} 
+              newPerson={this.newPerson} 
+              removePerson={this.removePerson}
+          />
       </div>
      
     );

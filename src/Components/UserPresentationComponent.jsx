@@ -1,5 +1,6 @@
-import { Button, Card, CardContent, CardMedia, makeStyles, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, CardMedia, IconButton, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -14,7 +15,8 @@ const useStyles = makeStyles(() => ({
     flexWrap: 'wrap',
     flex: '1 0 auto',
     maxWidth: '60%',
-    color: "#dcdde1"
+    color: "#dcdde1",
+    overflow: "auto"
   },
   img: {
     width: "10rem",
@@ -25,6 +27,9 @@ const useStyles = makeStyles(() => ({
   },
   icon: {
     color: "#2c3e50"
+  },
+  IconButton: {
+    color: "#dcdde1",
   },
   button: {
     margin: "20px",
@@ -41,13 +46,18 @@ const UserPresentationComponent = (props) => {
   return (
     <>
       <div className={classes.div}>
-        {props.persons.map(p => {
+        {props.persons.map((p, index) => {
             return (
               <Card className={classes.root}>
                 <CardContent className={classes.content}>
-                    <Typography component="h5" variant="h5">
-                        {p.name.first}                        
-                    </Typography>
+                    <div>
+                      <Typography component="h5" variant="h5">
+                          {p.name.first} 
+                          <IconButton className={classes.IconButton} onClick={() => props.removePerson(index)}>
+                            <DeleteIcon fontSize="small" />
+                          </IconButton>  
+                      </Typography>
+                    </div>
                     <Typography variant="subtitle1">
                         {p.location.country} - {p.location.city}
                     </Typography>
